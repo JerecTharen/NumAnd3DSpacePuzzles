@@ -1,4 +1,14 @@
-#!/usr/bin/env node
-import { foo } from './main'
+import { Numbers } from "./NumberFinder/numbers";
+import { numData } from "./NumberFinder/numbersData";
 
-foo()
+const shouldRunNumbers: boolean = true;
+const shouldRunCubeSolver: boolean = false;
+
+if(shouldRunNumbers){
+    let numberFinder:Numbers = new Numbers(numData());
+    console.log(`Result is: ${numberFinder.getMultFromPair(numberFinder.findSumPair(2020))}`);
+}
+
+if(shouldRunCubeSolver){
+    console.log('Cube Solver not implemented!');
+}
