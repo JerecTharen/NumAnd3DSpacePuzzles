@@ -64,5 +64,11 @@ describe('Numbers', ()=>{
             //Assert
             expect(actualMult).toBe(expectedMult);
         });
+        it('should throw an exception if there are not 2 numbers in the array', ()=>{
+            //Assert/Act/Arrange
+            expect(()=>{
+                SUT.getMultFromPair([]);
+            }).toThrow('Two numbers are expected');
+        });
     });
 });
