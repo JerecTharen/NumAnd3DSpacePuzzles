@@ -1,4 +1,4 @@
-import { Coordinate } from "./Coordinate";
+import { Coordinate } from "./Models/Coordinate";
 import { ICoordLib } from "./ICoordLib";
 
 export class CoordLib implements ICoordLib{
@@ -12,7 +12,7 @@ export class CoordLib implements ICoordLib{
                     let nY:number = startCoord.y + y;
                     let nZ:number = startCoord.z + z;
                     if(nX !== startCoord.x || nY !== startCoord.y || nZ !== startCoord.z)
-                        resultArr.push(new Coordinate(nX, nY, nZ, false));
+                        resultArr.push(new Coordinate(nX, nY, nZ));
                 });
             });
         });

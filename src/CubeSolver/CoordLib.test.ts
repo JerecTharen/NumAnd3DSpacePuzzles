@@ -1,4 +1,4 @@
-import { Coordinate } from './Coordinate';
+import { Coordinate } from './Models/Coordinate';
 import { CoordLib } from './CoordLib';
 import { ICoordLib } from './ICoordLib';
 
@@ -12,7 +12,7 @@ describe('CoordLib', ()=>{
         it('should find 26 neighbors', ()=>{
             //Arrange
             const expectedLength: number = 26;
-            const startingCoord: Coordinate = new Coordinate(0, 0, 0, false);
+            const startingCoord: Coordinate = new Coordinate(0, 0, 0);
 
             //Act
             let actualNeighbors: Coordinate[] = SUT.GetNeighborCoords(startingCoord);
@@ -23,7 +23,7 @@ describe('CoordLib', ()=>{
         it('should not find a coordinate with the same position as itself', ()=>{
             //Arrange
             const expectedLength: number = 0;
-            const startingCoord: Coordinate = new Coordinate(0, 0, 0, false);
+            const startingCoord: Coordinate = new Coordinate(0, 0, 0);
 
             //Act
             let actualNeighbors: Coordinate[] = SUT.GetNeighborCoords(startingCoord);
@@ -36,7 +36,7 @@ describe('CoordLib', ()=>{
         it('should only find coordinates with a difference of x, y, or z by 1 from the start position', ()=>{
             //Arrange
             const expectedLength: number = 0;
-            const startingCoord: Coordinate = new Coordinate(0, 0, 0, false);
+            const startingCoord: Coordinate = new Coordinate(0, 0, 0);
 
             //Act
             let actualNeighbors: Coordinate[] = SUT.GetNeighborCoords(startingCoord);
