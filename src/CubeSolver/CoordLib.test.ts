@@ -120,4 +120,37 @@ describe('CoordLib', ()=>{
             expect(actualNewArr).toEqual(expectedArr);
         });
     });
+
+    describe('GetActiveNodesFromArr', ()=>{
+        it('should return an empty array if there are no active nodes', ()=>{
+            //Arrange
+            const coord: Coordinate = new Coordinate(0, 0, 0);
+            const node: CoordinateNode = new CoordinateNode(coord, false);
+            const expectedArr: CoordinateNode[] = [];
+
+            //Act
+            let resultArr: CoordinateNode[] = SUT.GetActiveNodesFromArr([node]);
+
+            //Assert
+            expect(resultArr).toEqual(expectedArr);
+        });
+        it('should return only nodes that are active', ()=>{
+            //Arrange
+            let expectedArr: CoordinateNode[] = [];
+            for(let i: number = 0; i < 10; i++){
+                let coord: Coordinate = new Coordinate(i, i, i);
+                let node: CoordinateNode = new CoordinateNode(coord, true);
+                expectedArr.push(node);
+            }
+            let unexpectedCoord = new Coordinate(1, 0, 0)
+            let unexpectedNode = new CoordinateNode(unexpectedCoord, false);
+            let startingArr: CoordinateNode[] = [unexpectedNode].concat(expectedArr);
+
+            //Act
+            let resultArr: CoordinateNode[] = SUT.GetActiveNodesFromArr(startingArr);
+
+            //Assert
+            expect(resultArr).toEqual(expectedArr);
+        });
+    });
 });
