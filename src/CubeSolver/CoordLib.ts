@@ -24,12 +24,20 @@ export class CoordLib implements ICoordLib{
             && node.coordinate.y === searchCoord.y && node.coordinate.z === searchCoord.z);
         return filteredArr.length === 1 ? filteredArr[0] : null;
     }
+
     FindOrCreateNode = (searchCoord: Coordinate, startingNodes: CoordinateNode[]): CoordinateNode => 
         //Default to inactive state if not found
         this.FindCoordInNodeArr(searchCoord, startingNodes) ?? new CoordinateNode(searchCoord, false);
+
     InsertNode(newNode: CoordinateNode, newNodeArr: CoordinateNode[]): CoordinateNode[]{
-        throw new Error('Not Implemented');
-        console.log(newNode);
+        let foundNode: CoordinateNode | null = this.FindCoordInNodeArr(newNode.coordinate, newNodeArr);
+        if(foundNode !== null || foundNode !== undefined)
+            newNodeArr.push(newNode);
         return newNodeArr;
+    }
+
+    GetActiveNodesFromArr(nodeArr: CoordinateNode[]): CoordinateNode[]{
+        throw new Error('Not Implemented');
+        return nodeArr;
     }
 }
