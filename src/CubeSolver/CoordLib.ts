@@ -1,5 +1,6 @@
 import { Coordinate } from "./Models/Coordinate";
 import { ICoordLib } from "./ICoordLib";
+import { CoordinateNode } from "./Models/CoordinateNode";
 
 export class CoordLib implements ICoordLib{
     GetNeighborCoords(startCoord:Coordinate):Coordinate[]{
@@ -17,5 +18,18 @@ export class CoordLib implements ICoordLib{
             });
         });
         return resultArr;
+    }
+    FindOrCreateNode(searchCoord: Coordinate, startingNodes: CoordinateNode[]): CoordinateNode{
+        let resultNode: CoordinateNode | null;
+        let filteredArr: CoordinateNode[] = startingNodes.filter((node: CoordinateNode) => node.coordinate.x === searchCoord.x
+            && node.coordinate.y === searchCoord.y && node.coordinate.z === searchCoord.z);
+        resultNode = filteredArr.length === 1 ? filteredArr[0] : null;
+
+        return resultNode ?? new CoordinateNode(searchCoord, false);//Default to inactive state for new nodes
+    };
+    InsertNode(newNode: CoordinateNode, newNodeArr: CoordinateNode[]): CoordinateNode[]{
+        console.log(newNode, newNodeArr);
+        throw new Error('Not Implemented');
+        return [];
     }
 }
