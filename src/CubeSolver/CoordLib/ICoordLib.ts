@@ -6,4 +6,5 @@ export interface ICoordLib{
     FindOrCreateNode(searchCoord: Coordinate, startingNodes: CoordinateNode[]):CoordinateNode;
     InsertNode(newNode: CoordinateNode, newNodeArr: CoordinateNode[]): CoordinateNode[];
     GetActiveNodesFromArr(nodeArr: CoordinateNode[]): CoordinateNode[];
+    DecideActiveStatus(node: CoordinateNode, activeNeighborCount: number): CoordinateNode;
 }

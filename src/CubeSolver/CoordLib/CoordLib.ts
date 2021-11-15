@@ -40,4 +40,19 @@ export class CoordLib implements ICoordLib{
     GetActiveNodesFromArr(nodeArr: CoordinateNode[]): CoordinateNode[]{
         return nodeArr.filter((node: CoordinateNode) => node.isActive);
     }
+
+    DecideActiveStatus(node: CoordinateNode, activeNeighborCount: number):CoordinateNode{
+        if(node.isActive)
+            if(activeNeighborCount === 2 || activeNeighborCount === 3)
+                return node;
+            else
+                node.isActive = false;
+        else
+            if(activeNeighborCount === 3)
+                node.isActive = true;
+            else
+                return node;
+
+        return node;
+    }
 }

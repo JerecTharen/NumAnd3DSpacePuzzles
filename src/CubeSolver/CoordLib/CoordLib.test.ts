@@ -168,4 +168,103 @@ describe('CoordLib', ()=>{
             expect(resultArr).toEqual(expectedArr);
         });
     });
+
+    describe('DecideActiveStatus', ()=>{
+        //Testing start as inactive
+        it('should activate an inactive node if there are 3 active neighbors', ()=>{
+            //Arrange
+            const expectedIsActive:boolean = true;
+            const activeNeighborCount: number = 3;
+            const startIsActive:boolean = false;
+            let startNode: CoordinateNode = new CoordinateNode(new Coordinate(0, 0, 0), startIsActive);
+
+            //Act
+            let actualNode: CoordinateNode = SUT.DecideActiveStatus(startNode, activeNeighborCount);
+
+            //Assert
+            expect(actualNode.isActive).toBe(expectedIsActive);
+        });
+        it('should not activate an inactive node if there are 2 active neighbors', ()=>{
+            //Arrange
+            const expectedIsActive:boolean = false;
+            const activeNeighborCount: number = 2;
+            const startIsActive:boolean = false;
+            let startNode: CoordinateNode = new CoordinateNode(new Coordinate(0, 0, 0), startIsActive);
+
+            //Act
+            let actualNode: CoordinateNode = SUT.DecideActiveStatus(startNode, activeNeighborCount);
+
+            //Assert
+            expect(actualNode.isActive).toBe(expectedIsActive);
+        });
+
+        //Test start as active
+        //Test stay active
+        it('should not de-activate an inactive node if there are 2 active neighbors', ()=>{
+            //Arrange
+            const expectedIsActive:boolean = true;
+            const activeNeighborCount: number = 2;
+            const startIsActive:boolean = true;
+            let startNode: CoordinateNode = new CoordinateNode(new Coordinate(0, 0, 0), startIsActive);
+
+            //Act
+            let actualNode: CoordinateNode = SUT.DecideActiveStatus(startNode, activeNeighborCount);
+
+            //Assert
+            expect(actualNode.isActive).toBe(expectedIsActive);
+        });
+        it('should not de-activate an inactive node if there are 3 active neighbors', ()=>{
+            //Arrange
+            const expectedIsActive:boolean = true;
+            const activeNeighborCount: number = 3;
+            const startIsActive:boolean = true;
+            let startNode: CoordinateNode = new CoordinateNode(new Coordinate(0, 0, 0), startIsActive);
+
+            //Act
+            let actualNode: CoordinateNode = SUT.DecideActiveStatus(startNode, activeNeighborCount);
+
+            //Assert
+            expect(actualNode.isActive).toBe(expectedIsActive);
+        });
+        //Test change active
+        it('should de-activate an inactive node if there are 1 active neighbors', ()=>{
+            //Arrange
+            const expectedIsActive:boolean = false;
+            const activeNeighborCount: number = 1;
+            const startIsActive:boolean = true;
+            let startNode: CoordinateNode = new CoordinateNode(new Coordinate(0, 0, 0), startIsActive);
+
+            //Act
+            let actualNode: CoordinateNode = SUT.DecideActiveStatus(startNode, activeNeighborCount);
+
+            //Assert
+            expect(actualNode.isActive).toBe(expectedIsActive);
+        });
+        it('should de-activate an inactive node if there are 0 active neighbors', ()=>{
+            //Arrange
+            const expectedIsActive:boolean = false;
+            const activeNeighborCount: number = 0;
+            const startIsActive:boolean = true;
+            let startNode: CoordinateNode = new CoordinateNode(new Coordinate(0, 0, 0), startIsActive);
+
+            //Act
+            let actualNode: CoordinateNode = SUT.DecideActiveStatus(startNode, activeNeighborCount);
+
+            //Assert
+            expect(actualNode.isActive).toBe(expectedIsActive);
+        });
+        it('should de-activate an inactive node if there are 4 active neighbors', ()=>{
+            //Arrange
+            const expectedIsActive:boolean = false;
+            const activeNeighborCount: number = 4;
+            const startIsActive:boolean = true;
+            let startNode: CoordinateNode = new CoordinateNode(new Coordinate(0, 0, 0), startIsActive);
+
+            //Act
+            let actualNode: CoordinateNode = SUT.DecideActiveStatus(startNode, activeNeighborCount);
+
+            //Assert
+            expect(actualNode.isActive).toBe(expectedIsActive);
+        });
+    });
 });
