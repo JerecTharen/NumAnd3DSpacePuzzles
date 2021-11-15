@@ -1,7 +1,7 @@
-import { Coordinate } from './Models/Coordinate';
+import { Coordinate } from '../Models/Coordinate';
 import { CoordLib } from './CoordLib';
 import { ICoordLib } from './ICoordLib';
-import { CoordinateNode } from './Models/CoordinateNode';
+import { CoordinateNode } from '../Models/CoordinateNode';
 
 describe('CoordLib', ()=>{
     let SUT: ICoordLib;

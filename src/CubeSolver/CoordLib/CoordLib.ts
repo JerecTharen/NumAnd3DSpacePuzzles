@@ -1,6 +1,6 @@
-import { Coordinate } from "./Models/Coordinate";
+import { Coordinate } from "../Models/Coordinate";
 import { ICoordLib } from "./ICoordLib";
-import { CoordinateNode } from "./Models/CoordinateNode";
+import { CoordinateNode } from "../Models/CoordinateNode";
 
 export class CoordLib implements ICoordLib{
     GetNeighborCoords(startCoord:Coordinate):Coordinate[]{
@@ -37,7 +37,6 @@ export class CoordLib implements ICoordLib{
     }
 
     GetActiveNodesFromArr(nodeArr: CoordinateNode[]): CoordinateNode[]{
-        throw new Error('Not Implemented');
-        return nodeArr;
+        return nodeArr.filter((node: CoordinateNode) => node.isActive);
     }
 }

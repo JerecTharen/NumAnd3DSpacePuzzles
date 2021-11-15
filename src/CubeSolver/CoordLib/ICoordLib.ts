@@ -1,5 +1,5 @@
-import { Coordinate } from "./Models/Coordinate";
-import { CoordinateNode } from "./Models/CoordinateNode";
+import { Coordinate } from "../Models/Coordinate";
+import { CoordinateNode } from "../Models/CoordinateNode";
 
 export interface ICoordLib{
     GetNeighborCoords(startCoord: Coordinate):Coordinate[];
