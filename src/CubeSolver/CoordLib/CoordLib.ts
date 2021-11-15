@@ -30,10 +30,11 @@ export class CoordLib implements ICoordLib{
         this.FindCoordInNodeArr(searchCoord, startingNodes) ?? new CoordinateNode(searchCoord, false);
 
     InsertNode(newNode: CoordinateNode, newNodeArr: CoordinateNode[]): CoordinateNode[]{
+        let returnArr: CoordinateNode[] = [... newNodeArr];
         let foundNode: CoordinateNode | null = this.FindCoordInNodeArr(newNode.coordinate, newNodeArr);
-        if(foundNode !== null || foundNode !== undefined)
-            newNodeArr.push(newNode);
-        return newNodeArr;
+        if(foundNode === null)
+            returnArr.push(newNode);
+        return returnArr;
     }
 
     GetActiveNodesFromArr(nodeArr: CoordinateNode[]): CoordinateNode[]{

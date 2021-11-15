@@ -111,13 +111,28 @@ describe('CoordLib', ()=>{
             //Arrange
             const expectedCoord: Coordinate = new Coordinate(0, 0, 0);
             const expectedNode: CoordinateNode = new CoordinateNode(expectedCoord, false);
-            const expectedArr: CoordinateNode[] = [expectedNode];
+            const expectedNode2: CoordinateNode = new CoordinateNode(new Coordinate(1, 0, 0), false);
+            const expectedArr: CoordinateNode[] = [expectedNode, expectedNode2];
 
             //Act
             let actualNewArr: CoordinateNode[] = SUT.InsertNode(expectedNode, expectedArr);
 
             //Assert
             expect(actualNewArr).toEqual(expectedArr);
+        });
+        it('should not modify the original array', ()=>{
+            //Arrange
+            const expectedCoord: Coordinate = new Coordinate(0, 0, 0);
+            const expectedNode: CoordinateNode = new CoordinateNode(expectedCoord, false);
+            const expectedNode2: CoordinateNode = new CoordinateNode(new Coordinate(1, 0, 0), false);
+            const expectedArr: CoordinateNode[] = [expectedNode, expectedNode2];
+            let expectedArrLength: number = expectedArr.length;
+
+            //Act
+            let actualNewArr: CoordinateNode[] = SUT.InsertNode(expectedNode, expectedArr);
+
+            //Assert
+            expect(actualNewArr.length).toEqual(expectedArrLength);
         });
     });
 

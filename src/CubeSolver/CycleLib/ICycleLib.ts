@@ -6,5 +6,4 @@ export interface ICycleLib{
     EndNodes: CoordinateNode[];
     RunCycle():void;
     RunAllCycles():void;
-    GetActiveNodes(): CoordinateNode[];
 }

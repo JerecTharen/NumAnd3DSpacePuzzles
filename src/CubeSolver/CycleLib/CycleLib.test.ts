@@ -1,10 +1,13 @@
 import { ICycleLib } from './ICycleLib';
 import { CycleLib } from './CycleLib';
+import { ICoordLib } from '../CoordLib/ICoordLib';
+import { CoordLib } from '../CoordLib/CoordLib';
 import { CoordinateNode } from '../Models/CoordinateNode';
 import { Coordinate } from '../Models/Coordinate';
 
 describe('CycleLib', ()=>{
     let SUT: ICycleLib;
+    let coordLib: ICoordLib = new CoordLib();
     beforeEach(()=>{
         //Programming out the starting coordinates for the demonstartion pattern
         const startCoords: CoordinateNode[] = [
@@ -71,21 +74,19 @@ describe('CycleLib', ()=>{
             expect(filteredArr).toEqual(expectedArr);
         });
 
-        describe('GetActiveNodes', ()=>{
-
-            it('should have 5 active nodes before a cycle', ()=>{
-                //Assert
-                expect(SUT.GetActiveNodes().length).toBe(5);
-            });
+        //Checking setup of demo test
+        it('should have 5 active nodes before a cycle', ()=>{
+            //Assert
+            expect(coordLib.GetActiveNodesFromArr(SUT.StartNodes).length).toBe(5);
+        });
+        
+        //Counted the number of active nodes in the demo manually
+        it('should have 61 active nodes after the first cycle', ()=>{
+            //Act
+            SUT.RunCycle();
             
-            //Counted the number of active nodes in the demo manually
-            it('should have 61 active nodes after the first cycle', ()=>{
-                //Act
-                SUT.RunCycle();
-                
-                //Assert
-                expect(SUT.GetActiveNodes().length).toBe(61);
-            });
+            //Assert
+            expect(coordLib.GetActiveNodesFromArr(SUT.EndNodes).length).toBe(61);
         });
     });
 });
