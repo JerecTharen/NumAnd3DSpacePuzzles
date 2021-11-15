@@ -19,17 +19,17 @@ export class CoordLib implements ICoordLib{
         });
         return resultArr;
     }
-    FindOrCreateNode(searchCoord: Coordinate, startingNodes: CoordinateNode[]): CoordinateNode{
-        let resultNode: CoordinateNode | null;
-        let filteredArr: CoordinateNode[] = startingNodes.filter((node: CoordinateNode) => node.coordinate.x === searchCoord.x
+    private FindCoordInNodeArr(searchCoord: Coordinate, nodeArr: CoordinateNode[]): CoordinateNode | null{
+        let filteredArr: CoordinateNode[] = nodeArr.filter((node: CoordinateNode) => node.coordinate.x === searchCoord.x
             && node.coordinate.y === searchCoord.y && node.coordinate.z === searchCoord.z);
-        resultNode = filteredArr.length === 1 ? filteredArr[0] : null;
-
-        return resultNode ?? new CoordinateNode(searchCoord, false);//Default to inactive state for new nodes
-    };
+        return filteredArr.length === 1 ? filteredArr[0] : null;
+    }
+    FindOrCreateNode = (searchCoord: Coordinate, startingNodes: CoordinateNode[]): CoordinateNode => 
+        //Default to inactive state if not found
+        this.FindCoordInNodeArr(searchCoord, startingNodes) ?? new CoordinateNode(searchCoord, false);
     InsertNode(newNode: CoordinateNode, newNodeArr: CoordinateNode[]): CoordinateNode[]{
-        console.log(newNode, newNodeArr);
         throw new Error('Not Implemented');
-        return [];
+        console.log(newNode);
+        return newNodeArr;
     }
 }
